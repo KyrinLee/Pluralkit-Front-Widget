@@ -64,15 +64,18 @@ const res = await req.loadJSON()
 //set widget color to current fronter's color if wanted
 //widget text to either white or black to maintain contrast
 //if no color set for member, use system light/dark mode setting
+
 if (useFirstFronterColorAsBackgroundColor && res.members[0].color) 
 {  
-  memberColor = new Color(res.members[0].color);    
+  memberColor = new Color(res.members[0].color);  
+  if ((memberColor.red*0.299 + memberColor.green*0.587 + memberColor.blue*0.114) < 150) {
+    textColor = white;
+  }
 }
-else { memberColor = Color.dynamic(white, black) }   
-
-if ((memberColor.red*0.299 + memberColor.green*0.587 + memberColor.blue*0.114) < 150) {
-  textColor = white;
-}
+else {
+  memberColor = Color.dynamic(white, black);
+  textColor = Color.dynamic(black,white);
+}   
 
 bgColor = memberColor;
 
