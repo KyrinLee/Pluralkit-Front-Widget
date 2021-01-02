@@ -1,9 +1,9 @@
 //PLEASE INPUT YOUR SYSTEM ID BELOW, SURROUNDED BY DOUBLE QUOTES
-const systemID = "”
+const systemID = ""
 
 //INCLUDE TOKEN BELOW (found by running pk;token) IF YOUR SYSTEM FRONT INFORMATION IS PRIVATE 
 //MAKE SURE IT IS SURROUNDED BY DOUBLE QUOTES
-const token = "”
+const token = ""
 
 // Use Display Names
 // set true if you would like to use display names instead of names where available. Set to false to only use names.
