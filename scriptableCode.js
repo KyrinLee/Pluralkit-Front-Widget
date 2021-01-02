@@ -11,7 +11,7 @@ const useDisplayNames = true
 
 // Use First Fronter's Color as Widget Background Color
 // set to false if you would like to use black/white as opposed to the first fronter's color for the widget.
-const useFirstFronterColorAsBackgroundColor = true 
+const useFirstFronterColorAsBackgroundColor = true
 
 // FONT SIZES: only edit if necessary
 const headerFontSize = 28
@@ -25,14 +25,30 @@ const black = new Color("000000")
 //widget heading - 'Fronters' by default
 const heading = 'Fronters' 
 
-
-
+// fonts - leave "" for default system font.
+// view font options at iosfonts.com
+// list font names with all spaces between quote marks.
+// for example, headerFontName = "Bradley Hand" 
+const headerFontName = ""
+const listFontName = ""
 
 // DO NOT EDIT BELOW THIS UNLESS YOU KNOW WHAT YOU ARE DOING
 
 var error = ""
 var bgColor = white
 var textColor = black
+
+var headerFont = Font.systemFont(headerFontSize)
+var dividerFont = Font.systemFont(dividerFontSize)
+var listFont = Font.systemFont(listFontSize) 
+
+if (headerFontName != "") {
+  headerFont = new Font(headerFontName,headerFontSize)
+}
+if (listFontName != "") {
+  listFont = new Font(listFontName, listFontSize)
+}
+
 list = []
 
 const url = `https://api.pluralkit.me/v1/s/${systemID}/fronters`
@@ -64,7 +80,6 @@ const res = await req.loadJSON()
 //set widget color to current fronter's color if wanted
 //widget text to either white or black to maintain contrast
 //if no color set for member, use system light/dark mode setting
-
 if (useFirstFronterColorAsBackgroundColor && res.members[0].color) 
 {  
   memberColor = new Color(res.members[0].color);  
@@ -103,18 +118,18 @@ function createWidget(list, color, textcolor) {
   
   if (error != "") {
     errorTxt = w.addText(error);
-    errorTxt.font = Font.systemFont(dividerFontSize)
+    errorTxt.font = dividerFont
     return w
   }
   
   //display heading
   let titleTxt = w.addText(heading)
   titleTxt.textColor = textcolor
-  titleTxt.font = Font.systemFont(headerFontSize)
+  titleTxt.font = headerFont
   
   // separator line underneath header
   line = w.addText("━━━━━━━━━━")
-  line.font = Font.systemFont(dividerFontSize)
+  line.font = dividerFont
   line.textColor = textcolor
   
   //display fronters list
@@ -122,8 +137,9 @@ function createWidget(list, color, textcolor) {
     let subTxt = w.addText(list[i])
     subTxt.textColor = textcolor
     subTxt.textOpacity = 0.8
-    subTxt.font = Font.systemFont(listFontSize)
+    subTxt.font = listFont
   }
   w.addSpacer()
+  
   return w
 }
