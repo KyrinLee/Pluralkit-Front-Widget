@@ -27,8 +27,9 @@ const heading = 'Fronters'
 
 // fonts - leave "" for default system font.
 // view font options at iosfonts.com
-// list font names with all spaces between quote marks.
-// for example, headerFontName = "Bradley Hand" 
+// copy-paste font name in between quotes
+// for example, headerFontName = "Bradley Hand" or
+// headerFontName = "Cochin-Italic"
 const headerFontName = ""
 const listFontName = ""
 
