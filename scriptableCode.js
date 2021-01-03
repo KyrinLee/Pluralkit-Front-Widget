@@ -1,5 +1,3 @@
-//CODE BY VRISKA OF THE COLLECTIVE (ramblingArachnid#8781)
-
 //PLEASE INPUT YOUR SYSTEM ID BELOW, SURROUNDED BY DOUBLE QUOTES
 const systemID = ""
 
@@ -15,7 +13,7 @@ const useDisplayNames = true
 // set to false if you would like to use black/white as opposed to the first fronter's color for the widget.
 const useFirstFronterColorAsBackgroundColor = true
 
-// FONT SIZES: only edit if necessary
+// FONT SIZES
 const headerFontSize = 28
 const dividerFontSize = 12 
 const listFontSize = 22
@@ -26,6 +24,12 @@ const black = new Color("000000")
 
 //widget heading - 'Fronters' by default
 const heading = 'Fronters' 
+
+//divider text - add or remove lines to fix length issues
+const dividerText = "━━━━━━━━━━"
+
+//divider font - i dont know why you would change this but its here if you want to
+const dividerFontName = ""
 
 // fonts - leave "" for default system font.
 // view font options at iosfonts.com
@@ -50,6 +54,10 @@ if (headerFontName != "") {
 }
 if (listFontName != "") {
   listFont = new Font(listFontName, listFontSize)
+}
+
+if (dividerFontName != "") {
+  dividerFont = new Font(dividerFontName, dividerFontSize)
 }
 
 list = []
@@ -83,6 +91,7 @@ const res = await req.loadJSON()
 //set widget color to current fronter's color if wanted
 //widget text to either white or black to maintain contrast
 //if no color set for member, use system light/dark mode setting
+
 if (res.members.length > 0 && useFirstFronterColorAsBackgroundColor && res.members[0].color) 
 {  
   memberColor = new Color(res.members[0].color);  
@@ -100,7 +109,7 @@ bgColor = memberColor;
 // loop through members, get displayname if available, else use name 
 if (res.members.length == 0) {
   list.push("No fronter");
-} 
+}
 for (var i = 0; i<res.members.length;i++) {
   if (useDisplayNames && res.members[i].display_name) {
       list.push((res.members[i].display_name));
@@ -134,7 +143,7 @@ function createWidget(list, color, textcolor) {
   titleTxt.font = headerFont
   
   // separator line underneath header
-  line = w.addText("━━━━━━━━━━")
+  line = w.addText(dividerText)
   line.font = dividerFont
   line.textColor = textcolor
   
