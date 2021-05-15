@@ -95,7 +95,7 @@ const res = await req.loadJSON()
 if (res.members.length > 0 && useFirstFronterColorAsBackgroundColor && res.members[0].color) 
 {  
   memberColor = new Color(res.members[0].color);  
-  if ((memberColor.red*0.299 + memberColor.green*0.587 + memberColor.blue*0.114) < 150) {
+  if ((memberColor.red*0.299 + memberColor.green*0.587 + memberColor.blue*0.114) < .588) {
     textColor = white;
   }
 }
